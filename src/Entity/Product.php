@@ -27,6 +27,13 @@ class Product
     private float $price;
 
     /**
+     * Product's owner located city
+     * @var string
+     */
+    #[ORM\Column(type: 'string')]
+    private string $city;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -73,4 +80,22 @@ class Product
     {
         $this->price = $price;
     }
+
+    /**
+     * @return string
+     */
+    public function getCity(): string
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity(string $city): void
+    {
+        $this->city = $city;
+    }
+
+
 }
