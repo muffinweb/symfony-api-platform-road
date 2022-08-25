@@ -33,6 +33,10 @@ class Product
     #[ORM\Column(type: 'string')]
     private string $city;
 
+
+    #[ORM\ManyToOne(targetEntity: 'Brand')]
+    private Brand $brand;
+
     /**
      * @return int
      */
@@ -96,6 +100,24 @@ class Product
     {
         $this->city = $city;
     }
+
+    /**
+     * @return Brand
+     */
+    public function getBrand(): Brand
+    {
+        return $this->brand;
+    }
+
+    /**
+     * @param Brand $brand
+     */
+    public function setBrand(Brand $brand): void
+    {
+        $this->brand = $brand;
+    }
+
+
 
 
 }
