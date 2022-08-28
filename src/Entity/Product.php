@@ -34,8 +34,11 @@ class Product
     private string $city;
 
 
-    #[ORM\ManyToOne(targetEntity: 'Brand')]
+    #[ORM\ManyToOne(targetEntity: 'Brand', inversedBy: 'products')]
     private Brand $brand;
+
+    #[ORM\ManyToOne(targetEntity: 'Color', inversedBy: 'products')]
+    private Color $color;
 
     /**
      * @return int
@@ -117,7 +120,20 @@ class Product
         $this->brand = $brand;
     }
 
+    /**
+     * @return Color
+     */
+    public function getColor(): Color
+    {
+        return $this->color;
+    }
 
-
+    /**
+     * @param Color $color
+     */
+    public function setColor(Color $color): void
+    {
+        $this->color = $color;
+    }
 
 }

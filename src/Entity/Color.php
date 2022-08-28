@@ -3,47 +3,28 @@
 
 namespace App\Entity;
 
+
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ApiResource]
-class Brand
+class Color
 {
-
-    public function __construct()
-    {
+    public function __construct(){
         $this->products = new ArrayCollection();
     }
 
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column]
-    /**
-     * Increment ID of Brand
-     */
+    #[ORM\GeneratedValue]
     private int $id;
 
-
     #[ORM\Column]
-    /**
-     * Brand's Name
-     */
     private string $name;
 
-    #[ORM\Column]
-    /**
-     * International Identifier Number of Brand
-     */
-    private string $mpn;
-
-    /**
-     * Product's available belongs to Brand
-     *
-     * @var Product
-     */
-    #[ORM\OneToMany(targetEntity: 'Product', mappedBy: 'brand')]
+    #[ORM\OneToMany(targetEntity: 'Product', mappedBy: 'color')]
     private iterable $products;
 
     /**
@@ -79,36 +60,21 @@ class Brand
     }
 
     /**
-     * @return string
+     * @return iterable
      */
-    public function getMpn(): string
-    {
-        return $this->mpn;
-    }
-
-    /**
-     * @param string $mpn
-     */
-    public function setMpn(string $mpn): void
-    {
-        $this->mpn = $mpn;
-    }
-
-    /**
-     * @return Product
-     */
-    public function getProducts(): iterable|Product
+    public function getProducts(): iterable
     {
         return $this->products;
     }
 
     /**
-     * @param Product $products
+     * @param iterable $products
      */
-    public function setProducts(iterable|Product $products): void
+    public function setProducts(iterable $products): void
     {
         $this->products = $products;
     }
+
 
 
 
