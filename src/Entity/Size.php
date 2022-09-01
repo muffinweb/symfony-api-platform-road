@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
 #[ApiResource]
@@ -17,6 +18,8 @@ class Size
     private int $id;
 
     #[ORM\Column]
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
     private $size = '';
 
     /**
