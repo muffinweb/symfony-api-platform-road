@@ -40,6 +40,9 @@ class Product
     #[ORM\ManyToOne(targetEntity: 'Color', inversedBy: 'products')]
     private Color $color;
 
+    #[ORM\ManyToOne(targetEntity: 'Size', inversedBy: 'products')]
+    private Size $size;
+
     /**
      * @return int
      */
@@ -135,5 +138,23 @@ class Product
     {
         $this->color = $color;
     }
+
+    /**
+     * @return Size
+     */
+    public function getSize(): Size
+    {
+        return $this->size;
+    }
+
+    /**
+     * @param Size $size
+     */
+    public function setSize(Size $size): void
+    {
+        $this->size = $size;
+    }
+
+
 
 }
