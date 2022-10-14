@@ -3,31 +3,23 @@
 
 namespace App\Entity;
 
-
 use ApiPlatform\Core\Annotation\ApiResource;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ApiResource]
-class Color
+class Player
 {
-    public function __construct(){
-        $this->products = new ArrayCollection();
-
-        $this->players = new ArrayCollection();
-    }
-
     #[ORM\Id]
-    #[ORM\Column]
     #[ORM\GeneratedValue]
+    #[ORM\Column]
     private int $id;
 
     #[ORM\Column]
     private string $name;
 
-    #[ORM\OneToMany(targetEntity: 'Product', mappedBy: 'color')]
-    private iterable $products;
+    #[ORM\ManyToOne(targetEntity: 'Color', inversedBy: 'player')]
+    private Color $color;
 
     /**
      * @return int
@@ -62,21 +54,20 @@ class Color
     }
 
     /**
-     * @return iterable
+     * @return Color
      */
-    public function getProducts(): iterable
+    public function getColor(): Color
     {
-        return $this->products;
+        return $this->color;
     }
 
     /**
-     * @param iterable $products
+     * @param Color $color
      */
-    public function setProducts(iterable $products): void
+    public function setColor(Color $color): void
     {
-        $this->products = $products;
+        $this->color = $color;
     }
-
 
 
 
